@@ -17,7 +17,6 @@ public class Intake extends Subsystem {
     }
 
     public void initDefaultCommand() {
-        //setDefaultCommand(new MySpecialCommand());
     }
     
     public void setEnabled(boolean enabled) {

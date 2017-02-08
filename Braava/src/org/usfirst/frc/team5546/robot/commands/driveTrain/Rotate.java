@@ -14,7 +14,6 @@ public class Rotate extends Command {
 	double offset = 3.0;
 	
     public Rotate(double setpoint) {
-        // Use requires() here to declare subsystem dependencies
     	this.setpoint = setpoint;
         requires(Robot.driveTrain);
     }

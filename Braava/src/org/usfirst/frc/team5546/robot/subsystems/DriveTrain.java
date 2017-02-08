@@ -26,32 +26,20 @@ public class DriveTrain extends PIDSubsystem {
 	public VictorSP frontRightMotor = new VictorSP(2);
 	public VictorSP rearRightMotor = new VictorSP(3);
 
-    // Initialize your subsystem here
     public DriveTrain() {
     	super(4, 0.1, 0);
     	setAbsoluteTolerance(20);
-    	//setInputRange(-360, 360);
-    	imu = new ADIS16448_IMU();
-        // Use these to get going:
-        // setSetpoint() -  Sets where the PID controller should move the system
-        //                  to
-        // enable() - Enables the PID controller.
-    	
+    	imu = new ADIS16448_IMU();    	
     	drive = new RobotDrive(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
     	drive.setSafetyEnabled(false);
-    	
     	encoderLeft = new Encoder(0, 1);
     }
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
         setDefaultCommand(new Drive());
     }
 
     protected double returnPIDInput() {
-        // Return your input value for the PID loop
-        // e.g. a sensor, like a potentiometer:
-        // yourPot.getAverageVoltage() / kYourMaxVoltage;
         if (rotate) {
         	return imu.getAngleZ();
         } else {
@@ -60,8 +48,6 @@ public class DriveTrain extends PIDSubsystem {
     }
 
     protected void usePIDOutput(double output) {
-        // Use output to drive your system, like a motor
-        // e.g. yourMotor.set(output);
     	if (rotate) {
     		drive.tankDrive(output * 0.6, -output * 0.6);
     	} else {
