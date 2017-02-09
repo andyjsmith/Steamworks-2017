@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5546.robot;
 
+import org.usfirst.frc.team5546.robot.commands.compressor.StartCompressor;
+import org.usfirst.frc.team5546.robot.commands.compressor.StopCompressor;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.Drive;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveInverse;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.Rotate;
@@ -31,12 +33,17 @@ public class OI {
 	
 	// Start vision button (turns on light)
 	public Button startVision = new JoystickButton(launchpad, 4);
+	public Button compressorBtn = new JoystickButton(launchpad, 3);
 	
 	public OI() {
 		switchDirectionForwardBtn.whenPressed(new Drive());
 		switchDirectionReverseBtn.whenPressed(new DriveInverse());
+		
 		startVision.whenPressed(new StopVision());
 		startVision.whenReleased(new StartVision());
+		
+		compressorBtn.whenPressed(new StopCompressor());
+		compressorBtn.whenReleased(new StartCompressor());
 		
 		SmartDashboard.putData("Rotate", new Rotate(90));
 	}

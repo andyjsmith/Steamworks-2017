@@ -10,6 +10,7 @@ import org.usfirst.frc.team5546.robot.commands.driveTrain.Rotate;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.TombOfTheUnknownSoldier;
 import org.usfirst.frc.team5546.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5546.robot.subsystems.Intake;
+import org.usfirst.frc.team5546.robot.subsystems.PneumaticCompressor;
 import org.usfirst.frc.team5546.robot.subsystems.Shooter;
 import org.usfirst.frc.team5546.robot.subsystems.Vision;
 
@@ -42,6 +43,7 @@ public class Robot extends IterativeRobot {
 	public static final Vision vision = new Vision();
 	public static final Shooter shooter = new Shooter();
 	public static final Intake intake = new Intake();
+	public static final PneumaticCompressor compressor = new PneumaticCompressor();
 	public static OI oi;
 
 	public static Preferences prefs;
@@ -50,8 +52,7 @@ public class Robot extends IterativeRobot {
 	public static UsbCamera camera, camera2;
 
 	VictorSP tempMotor;
-
-	Compressor compressor;
+	
 	AnalogInput pressureSensor;
 	PowerDistributionPanel pdp;
 
