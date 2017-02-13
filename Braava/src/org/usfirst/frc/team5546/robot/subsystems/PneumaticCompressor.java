@@ -1,7 +1,5 @@
 package org.usfirst.frc.team5546.robot.subsystems;
 
-import org.usfirst.frc.team5546.robot.commands.compressor.StartCompressor;
-
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -19,7 +17,7 @@ public class PneumaticCompressor extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new StartCompressor());
+        // setDefaultCommand(new StartCompressor());
     }
     
     public void setEnabled(boolean enabled) {
