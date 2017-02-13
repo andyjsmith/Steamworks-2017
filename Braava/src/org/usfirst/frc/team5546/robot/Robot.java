@@ -2,6 +2,8 @@
 package org.usfirst.frc.team5546.robot;
 
 import org.opencv.core.Mat;
+import org.usfirst.frc.team5546.robot.commands.compressor.StartCompressor;
+import org.usfirst.frc.team5546.robot.commands.compressor.StopCompressor;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.CenterToTape;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveStraight;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.GearAuto;
@@ -9,9 +11,11 @@ import org.usfirst.frc.team5546.robot.commands.driveTrain.LeftGearAuto;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.Rotate;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.TombOfTheUnknownSoldier;
 import org.usfirst.frc.team5546.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team5546.robot.subsystems.GearGrabber;
 import org.usfirst.frc.team5546.robot.subsystems.Intake;
 import org.usfirst.frc.team5546.robot.subsystems.PneumaticCompressor;
 import org.usfirst.frc.team5546.robot.subsystems.Shooter;
+import org.usfirst.frc.team5546.robot.subsystems.ShooterFeeder;
 import org.usfirst.frc.team5546.robot.subsystems.Vision;
 
 import edu.wpi.cscore.CvSink;
@@ -19,7 +23,6 @@ import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Preferences;
@@ -44,12 +47,16 @@ public class Robot extends IterativeRobot {
 	public static final Shooter shooter = new Shooter();
 	public static final Intake intake = new Intake();
 	public static final PneumaticCompressor compressor = new PneumaticCompressor();
+	public static final GearGrabber gearGrabber = new GearGrabber();
+	public static final ShooterFeeder feeder = new ShooterFeeder();
 	public static OI oi;
 
 	public static Preferences prefs;
 
 	public static CameraServer cameraServer;
 	public static UsbCamera camera, camera2;
+	
+	public static boolean gearCamera = false;
 
 	VictorSP tempMotor;
 	
@@ -78,8 +85,7 @@ public class Robot extends IterativeRobot {
 
 		// tempMotor = new VictorSP(4);
 		// compressor = new Compressor();
-		// pressureSensor = new AnalogInput(0);
-		pdp = new PowerDistributionPanel();
+		pressureSensor = new AnalogInput(1);
 
 		// Camera
 		Thread cameraThread = new Thread(() -> {
@@ -91,9 +97,13 @@ public class Robot extends IterativeRobot {
 			UsbCamera cameraReverse = CameraServer.getInstance().startAutomaticCapture(1);
 			cameraReverse.setResolution(320, 240);
 			cameraReverse.setFPS(20);
+			UsbCamera cameraGear = CameraServer.getInstance().startAutomaticCapture(2);
+			cameraGear.setResolution(320, 240);
+			cameraGear.setFPS(20);
 
 			CvSink cvSinkForward = CameraServer.getInstance().getVideo(cameraForward);
 			CvSink cvSinkReverse = CameraServer.getInstance().getVideo(cameraReverse);
+			CvSink cvSinkGear = CameraServer.getInstance().getVideo(cameraGear);
 			CvSource outputStream = CameraServer.getInstance().putVideo("Switcher", 320, 240);
 
 			Mat image = new Mat();
@@ -106,12 +116,19 @@ public class Robot extends IterativeRobot {
 					drivingForward = false;
 				}
 
-				if (drivingForward) {
+				if (gearCamera) {
 					cvSinkReverse.setEnabled(false);
+					cvSinkForward.setEnabled(false);
+					cvSinkGear.setEnabled(true);
+					cvSinkGear.grabFrame(image);
+				} else if (drivingForward) {
+					cvSinkReverse.setEnabled(false);
+					cvSinkGear.setEnabled(false);
 					cvSinkForward.setEnabled(true);
 					cvSinkForward.grabFrame(image);
 				} else {
 					cvSinkForward.setEnabled(false);
+					cvSinkGear.setEnabled(false);
 					cvSinkReverse.setEnabled(true);
 					cvSinkReverse.grabFrame(image);
 				}
@@ -188,7 +205,11 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putData("Scheduler", Scheduler.getInstance());
 
-		// compressor.start();
+		if (oi.compressorBtn.get()) {
+			new StopCompressor();
+		} else {
+			new StartCompressor();
+		}
 	}
 
 	/**
@@ -198,9 +219,8 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
-		// SmartDashboard.putNumber("Pressure",
-		// Math.floor((pressureSensor.getAverageVoltage() - 0.485) / 2.2518 *
-		// 120));
+		SmartDashboard.putNumber("Pressure",
+		Math.floor((pressureSensor.getAverageVoltage() - 0.485) / 2.2518 * 120));
 	}
 
 	/**
