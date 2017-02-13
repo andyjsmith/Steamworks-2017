@@ -33,7 +33,7 @@ public class Shooter extends Subsystem {
 	}
 
     public void initDefaultCommand() {
-        setDefaultCommand(new KeepShooterSpeed());
+        //setDefaultCommand(new KeepShooterSpeed());
     }
     
     public void setSpeed() {
