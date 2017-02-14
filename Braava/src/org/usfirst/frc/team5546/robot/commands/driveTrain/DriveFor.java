@@ -21,6 +21,7 @@ public class DriveFor extends Command {
     protected void initialize() {
     	Robot.driveTrain.rotate = false;
     	//Robot.driveTrain.encoderLeft.reset();
+    	Robot.driveTrain.getPIDController().setPID(4, 0.1, 0);
     	Robot.driveTrain.setSetpointRelative(distance);
     	Robot.driveTrain.setAbsoluteTolerance(100);
     	Robot.driveTrain.enable();

@@ -22,6 +22,7 @@ public class DriveStraight extends Command {
     	Robot.driveTrain.rotate = false;
     	Robot.driveTrain.encoderLeft.reset();
     	Robot.driveTrain.imu.reset();
+    	Robot.driveTrain.getPIDController().setPID(4, 0.1, 0);
     	Robot.driveTrain.setSetpointRelative(distance);
     	Robot.driveTrain.setAbsoluteTolerance(100);
     	Robot.driveTrain.enable();
