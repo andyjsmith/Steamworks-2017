@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5546.robot.commands.driveTrain;
 
 import org.usfirst.frc.team5546.robot.Robot;
+import org.usfirst.frc.team5546.robot.commands.vision.StartVision;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
@@ -15,7 +16,7 @@ public class GearAuto extends Command {
 
 	final int IMAGE_WIDTH = 320;
 	//final int IMAGE_MIDPOINT = IMAGE_WIDTH / 2;
-	final int IMAGE_MIDPOINT = 180;
+	final int IMAGE_MIDPOINT = 155;
 	
 	boolean finished = false;
 
@@ -27,6 +28,8 @@ public class GearAuto extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		new StartVision(); // turn on light
+		finished = false;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -37,7 +40,7 @@ public class GearAuto extends Command {
 			
 			double rotation = (midpoint - IMAGE_MIDPOINT) / 1000 * -1;
 			
-			Robot.driveTrain.driveArcade(0.4, Math.cbrt(rotation));
+			Robot.driveTrain.driveArcade(0.5, Math.cbrt(rotation));
 			
 			double area = (visionTable.getNumberArray("width", new double[2])[0] + 
 					visionTable.getNumberArray("width", new double[2])[1]) * 
@@ -46,6 +49,7 @@ public class GearAuto extends Command {
 			
 			if (area >= 6900.0) {
 				finished = true;
+				Robot.driveTrain.driveArcade(0, 0);
 			}
 		}
 	}

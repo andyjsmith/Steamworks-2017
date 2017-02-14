@@ -6,7 +6,7 @@ import org.usfirst.frc.team5546.robot.commands.compressor.StartCompressor;
 import org.usfirst.frc.team5546.robot.commands.compressor.StopCompressor;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.CenterToTape;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveStraight;
-import org.usfirst.frc.team5546.robot.commands.driveTrain.GearAuto;
+import org.usfirst.frc.team5546.robot.commands.driveTrain.GearAutoGroup;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.LeftGearAuto;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.Rotate;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.TombOfTheUnknownSoldier;
@@ -77,7 +77,7 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("(Default) Rotate 90deg", new Rotate(90));
 		chooser.addObject("Drive for 3 feet", new DriveStraight(6));
 		chooser.addObject("Tomb of the Unknown Soldier", new TombOfTheUnknownSoldier());
-		chooser.addObject("GearAuto", new GearAuto());
+		chooser.addObject("GearAuto", new GearAutoGroup());
 		chooser.addObject("CenterToTape", new CenterToTape());
 		chooser.addObject("LeftGearAuto", new LeftGearAuto());
 
