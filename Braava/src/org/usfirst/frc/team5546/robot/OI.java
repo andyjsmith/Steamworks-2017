@@ -9,6 +9,8 @@ import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveInverse;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.Rotate;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PickUpGear;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PlaceGear;
+import org.usfirst.frc.team5546.robot.commands.shooter.StartFeeder;
+import org.usfirst.frc.team5546.robot.commands.shooter.StopFeeder;
 import org.usfirst.frc.team5546.robot.commands.vision.StartVision;
 import org.usfirst.frc.team5546.robot.commands.vision.StopVision;
 
@@ -38,7 +40,7 @@ public class OI {
 	// Start vision button (turns on light)
 	public Button startVision = new JoystickButton(stickRight, 3);
 	public Button compressorBtn = new JoystickButton(launchpad, 3);
-	//public Button shooterFeederBtn = new JoystickButton(launchpad, 2);
+	public Button shooterFeederBtn = new JoystickButton(launchpad, 2);
 	
 	public Button gearCameraBtn = new JoystickButton(stickRight, 2);
 
@@ -54,8 +56,8 @@ public class OI {
 		compressorBtn.whenPressed(new StopCompressor());
 		compressorBtn.whenReleased(new StartCompressor());
 		
-		//shooterFeederBtn.whenPressed(new StopFeeder());
-		//shooterFeederBtn.whenReleased(new StartFeeder());
+		shooterFeederBtn.whenPressed(new StopFeeder());
+		shooterFeederBtn.whenReleased(new StartFeeder());
 
 		gearLiftBtn.whenPressed(new PickUpGear());
 		gearLiftBtn.whenReleased(new PlaceGear());

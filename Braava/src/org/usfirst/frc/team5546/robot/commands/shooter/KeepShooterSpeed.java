@@ -3,7 +3,6 @@ package org.usfirst.frc.team5546.robot.commands.shooter;
 import org.usfirst.frc.team5546.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -24,7 +23,6 @@ public class KeepShooterSpeed extends Command {
     	Robot.shooter.talon.set(0.75);
 //    	Robot.shooter.talon.enable();
 //    	Robot.shooter.talon.set(Shooter.IDEAL_SPEED);
-    	SmartDashboard.putNumber("Talon Encoder", Robot.shooter.talon.getEncVelocity());
     }
 
     // Make this return true when this Command no longer needs to run execute()
