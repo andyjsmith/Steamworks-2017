@@ -1,7 +1,5 @@
 package org.usfirst.frc.team5546.robot.subsystems;
 
-import org.usfirst.frc.team5546.robot.commands.compressor.StopCompressor;
-
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 

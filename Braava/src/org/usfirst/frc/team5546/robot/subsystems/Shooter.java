@@ -1,7 +1,6 @@
 package org.usfirst.frc.team5546.robot.subsystems;
 
 import org.usfirst.frc.team5546.robot.RobotMap;
-import org.usfirst.frc.team5546.robot.commands.shooter.KeepShooterSpeed;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
