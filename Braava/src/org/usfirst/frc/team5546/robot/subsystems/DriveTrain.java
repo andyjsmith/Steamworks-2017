@@ -3,6 +3,7 @@ package org.usfirst.frc.team5546.robot.subsystems;
 import org.usfirst.frc.team5546.robot.ADIS16448_IMU;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.Drive;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -16,6 +17,7 @@ public class DriveTrain extends PIDSubsystem {
 	public ADIS16448_IMU imu;
 	public RobotDrive drive;
 	public Encoder encoderLeft;
+	public AnalogInput ultrasonic;
 	
 	public final double DISTANCE_PER_FOOT = 1287;
 	
@@ -33,6 +35,7 @@ public class DriveTrain extends PIDSubsystem {
     	drive = new RobotDrive(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
     	drive.setSafetyEnabled(false);
     	encoderLeft = new Encoder(0, 1);
+    	ultrasonic = new AnalogInput(0);
     }
 
     public void initDefaultCommand() {
@@ -61,5 +64,9 @@ public class DriveTrain extends PIDSubsystem {
     
     public void driveArcade(double moveValue, double rotateValue) {
     	drive.arcadeDrive(moveValue, rotateValue);
+    }
+    
+    public boolean getUltrasonicSensor() {
+    	return ultrasonic.getAverageVoltage() < 4.9;
     }
 }
