@@ -14,8 +14,8 @@ public class GearGrabber extends Subsystem {
 	
 	public GearGrabber() {
 		
-		grabber = new DoubleSolenoid(0, 1);
-		lifter = new DoubleSolenoid(2, 3);
+		lifter = new DoubleSolenoid(0, 1);
+		grabber = new DoubleSolenoid(2, 3);
 	}
 	
     public void initDefaultCommand() {
