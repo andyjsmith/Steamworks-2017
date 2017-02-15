@@ -27,6 +27,8 @@ public class DriveTrain extends PIDSubsystem {
 	public VictorSP rearLeftMotor = new VictorSP(1);
 	public VictorSP frontRightMotor = new VictorSP(2);
 	public VictorSP rearRightMotor = new VictorSP(3);
+	
+	public double speed = 0;
 
     public DriveTrain() {
     	super(4, 0.1, 0);
@@ -54,7 +56,7 @@ public class DriveTrain extends PIDSubsystem {
     	if (rotate) {
     		drive.tankDrive(output * 0.6, -output * 0.6);
     	} else {
-    		drive.arcadeDrive(output * 0.4, imu.getAngleZ() * 0.05);
+    		drive.arcadeDrive(output * speed, imu.getAngleZ() * 0.05);
     	}
     }
     
@@ -67,6 +69,6 @@ public class DriveTrain extends PIDSubsystem {
     }
     
     public boolean getUltrasonicSensor() {
-    	return ultrasonic.getAverageVoltage() < 4.9;
+    	return ultrasonic.getAverageVoltage() < 4.0;
     }
 }

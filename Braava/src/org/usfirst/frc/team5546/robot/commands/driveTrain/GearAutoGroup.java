@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5546.robot.commands.driveTrain;
 
+import org.usfirst.frc.team5546.robot.commands.gearGrabber.PickUpGear;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PlaceGear;
 import org.usfirst.frc.team5546.robot.commands.vision.StartVision;
 import org.usfirst.frc.team5546.robot.commands.vision.StopVision;
@@ -31,8 +32,10 @@ public class GearAutoGroup extends CommandGroup {
     	
     	addSequential(new StartVision());
     	addSequential(new GearAuto());
+    	addSequential(new DriveUntilWall(0.3));
+    	addSequential(new StopVision());
     	addSequential(new PlaceGear());
-    	addSequential(new DriveFor(-1));
-    	addParallel(new StopVision());
+    	addSequential(new DriveFor(-2, 0.5));
+    	addSequential(new PickUpGear());
     }
 }
