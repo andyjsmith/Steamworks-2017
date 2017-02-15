@@ -9,8 +9,10 @@ import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveInverse;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.Rotate;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PickUpGear;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PlaceGear;
-import org.usfirst.frc.team5546.robot.commands.shooter.StartFeeder;
-import org.usfirst.frc.team5546.robot.commands.shooter.StopFeeder;
+import org.usfirst.frc.team5546.robot.commands.intake.StartIntake;
+import org.usfirst.frc.team5546.robot.commands.intake.StopIntake;
+import org.usfirst.frc.team5546.robot.commands.shooter.DisableShooter;
+import org.usfirst.frc.team5546.robot.commands.shooter.RunShooter;
 import org.usfirst.frc.team5546.robot.commands.vision.StartVision;
 import org.usfirst.frc.team5546.robot.commands.vision.StopVision;
 
@@ -34,36 +36,37 @@ public class OI {
 	
 	// Switching drive directions
 	public boolean inverseDrive = false;
-	public Button switchDirectionForwardBtn = new JoystickButton(stickRight, 1);
-	public Button switchDirectionReverseBtn = new JoystickButton(stickLeft, 1);
+	public Button switchDirectionForwardBtn = new JoystickButton(stickRight, 2);
+	public Button switchDirectionReverseBtn = new JoystickButton(stickRight, 3);
 	
-	// Start vision button (turns on light)
-	public Button startVision = new JoystickButton(stickRight, 3);
 	public Button compressorBtn = new JoystickButton(launchpad, 3);
 	public Button shooterFeederBtn = new JoystickButton(launchpad, 2);
 	
-	public Button gearCameraBtn = new JoystickButton(stickRight, 2);
+	public Button gearPickUpBtn = new JoystickButton(stickRight, 1);
 
-	public Button gearLiftBtn = new JoystickButton(launchpad, 4);
+	public Button gearSlotBtn = new JoystickButton(stickLeft, 1);
+	
+	public Button intakeOnBtn = new JoystickButton(stickRight, 11);
+	public Button intakeOffBtn = new JoystickButton(stickRight, 12);
 	
 	public OI() {
 		switchDirectionForwardBtn.whenPressed(new Drive());
 		switchDirectionReverseBtn.whenPressed(new DriveInverse());
 		
-		startVision.whenPressed(new StopVision());
-		startVision.whenReleased(new StartVision());
-		
 		compressorBtn.whenPressed(new StopCompressor());
 		compressorBtn.whenReleased(new StartCompressor());
 		
-		shooterFeederBtn.whenPressed(new StopFeeder());
-		shooterFeederBtn.whenReleased(new StartFeeder());
+		shooterFeederBtn.whenReleased(new RunShooter());
+		shooterFeederBtn.whenPressed(new DisableShooter());
 
-		gearLiftBtn.whenPressed(new PickUpGear());
-		gearLiftBtn.whenReleased(new PlaceGear());
+		gearPickUpBtn.whenPressed(new PlaceGear());
+		gearPickUpBtn.whenReleased(new PickUpGear());
 		
-		gearCameraBtn.whenPressed(new EnableGearCamera());
-		gearCameraBtn.whenReleased(new DisableGearCamera());
+		gearPickUpBtn.whenPressed(new EnableGearCamera());
+		gearPickUpBtn.whenReleased(new DisableGearCamera());
+		
+		intakeOnBtn.whenPressed(new StartIntake());
+		intakeOffBtn.whenPressed(new StopIntake());
 		
 		SmartDashboard.putData("Rotate", new Rotate(90));
 	}
