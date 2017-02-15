@@ -2,12 +2,16 @@ package org.usfirst.frc.team5546.robot;
 
 import org.usfirst.frc.team5546.robot.commands.cameras.DisableGearCamera;
 import org.usfirst.frc.team5546.robot.commands.cameras.EnableGearCamera;
+import org.usfirst.frc.team5546.robot.commands.climber.Climb;
+import org.usfirst.frc.team5546.robot.commands.climber.StopClimb;
 import org.usfirst.frc.team5546.robot.commands.compressor.StartCompressor;
 import org.usfirst.frc.team5546.robot.commands.compressor.StopCompressor;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.Drive;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveInverse;
+import org.usfirst.frc.team5546.robot.commands.gearGrabber.Grab;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PickUpGear;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PlaceGear;
+import org.usfirst.frc.team5546.robot.commands.gearGrabber.Release;
 import org.usfirst.frc.team5546.robot.commands.intake.StartIntake;
 import org.usfirst.frc.team5546.robot.commands.intake.StopIntake;
 import org.usfirst.frc.team5546.robot.commands.shooter.DisableShooter;
@@ -47,6 +51,8 @@ public class OI {
 	public Button intakeOnBtn = new JoystickButton(stickRight, 11);
 	public Button intakeOffBtn = new JoystickButton(stickRight, 12);
 	
+	public Button climberBtn = new JoystickButton(launchpad, 7);
+	
 	public Button gearLightBtn = new JoystickButton(stickLeft, 7);
 	public Button highgoalLightBtn = new JoystickButton(stickLeft, 8);
 	
@@ -66,10 +72,16 @@ public class OI {
 		gearPickUpBtn.whenPressed(new EnableGearCamera());
 		gearPickUpBtn.whenReleased(new DisableGearCamera());
 		
+		gearSlotBtn.whenPressed(new Release());
+		gearSlotBtn.whenReleased(new Grab());
+		
 		intakeOnBtn.whenPressed(new StartIntake());
 		intakeOffBtn.whenPressed(new StopIntake());
 		
 		gearLightBtn.whenPressed(new StartVision());
 		highgoalLightBtn.whenPressed(new StopVision());
+		
+		climberBtn.whenPressed(new Climb());
+		climberBtn.whenReleased(new StopClimb());
 	}
 }

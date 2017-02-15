@@ -11,6 +11,7 @@ import org.usfirst.frc.team5546.robot.commands.driveTrain.LeftGearAuto;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.Rotate;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.TombOfTheUnknownSoldier;
 import org.usfirst.frc.team5546.robot.commands.vision.StartVision;
+import org.usfirst.frc.team5546.robot.subsystems.Climber;
 import org.usfirst.frc.team5546.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5546.robot.subsystems.GearGrabber;
 import org.usfirst.frc.team5546.robot.subsystems.Intake;
@@ -50,6 +51,7 @@ public class Robot extends IterativeRobot {
 	public static final PneumaticCompressor compressor = new PneumaticCompressor();
 	public static final GearGrabber gearGrabber = new GearGrabber();
 	public static final ShooterFeeder feeder = new ShooterFeeder();
+	public static final Climber climber = new Climber();
 	public static OI oi;
 
 	public static Preferences prefs;
@@ -75,14 +77,14 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		prefs = Preferences.getInstance();
+		chooser.addDefault("Gear Middle", new GearAutoGroup());
 		chooser.addObject("Rotate 90deg", new Rotate(90));
 		chooser.addObject("Drive for 3 feet", new DriveStraight(6));
 		chooser.addObject("Tomb of the Unknown Soldier", new TombOfTheUnknownSoldier());
-		chooser.addDefault("Gear Middle", new GearAutoGroup());
 		chooser.addObject("CenterToTape", new CenterToTape());
 		chooser.addObject("LeftGearAuto", new LeftGearAuto());
 
-		SmartDashboard.putData("Auto mode", chooser);
+		SmartDashboard.putData("Auto", chooser);
 
 		// tempMotor = new VictorSP(4);
 		// compressor = new Compressor();
@@ -156,6 +158,8 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("Encoder distance",
 				driveTrain.encoderLeft.getDistance() / driveTrain.DISTANCE_PER_FOOT);
+		SmartDashboard.putNumber("Pressure",
+				Math.floor((pressureSensor.getAverageVoltage() - 0.485) / 2.2518 * 120));
 	}
 
 	/**
@@ -193,6 +197,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		
+		SmartDashboard.putNumber("Pressure",
+				Math.floor((pressureSensor.getAverageVoltage() - 0.485) / 2.2518 * 120));
 	}
 
 	@Override
@@ -221,7 +228,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 
 		SmartDashboard.putNumber("Pressure",
-		Math.floor((pressureSensor.getAverageVoltage() - 0.485) / 2.2518 * 120));
+				Math.floor((pressureSensor.getAverageVoltage() - 0.485) / 2.2518 * 120));
 		
 		new StartVision();
 	}
