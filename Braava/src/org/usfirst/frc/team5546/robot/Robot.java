@@ -10,6 +10,7 @@ import org.usfirst.frc.team5546.robot.commands.driveTrain.GearAutoGroup;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.LeftGearAuto;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.Rotate;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.TombOfTheUnknownSoldier;
+import org.usfirst.frc.team5546.robot.commands.vision.StartVision;
 import org.usfirst.frc.team5546.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5546.robot.subsystems.GearGrabber;
 import org.usfirst.frc.team5546.robot.subsystems.Intake;
@@ -74,10 +75,10 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		prefs = Preferences.getInstance();
-		chooser.addDefault("(Default) Rotate 90deg", new Rotate(90));
+		chooser.addObject("Rotate 90deg", new Rotate(90));
 		chooser.addObject("Drive for 3 feet", new DriveStraight(6));
 		chooser.addObject("Tomb of the Unknown Soldier", new TombOfTheUnknownSoldier());
-		chooser.addObject("GearAuto", new GearAutoGroup());
+		chooser.addDefault("Gear Middle", new GearAutoGroup());
 		chooser.addObject("CenterToTape", new CenterToTape());
 		chooser.addObject("LeftGearAuto", new LeftGearAuto());
 
@@ -221,6 +222,8 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putNumber("Pressure",
 		Math.floor((pressureSensor.getAverageVoltage() - 0.485) / 2.2518 * 120));
+		
+		new StartVision();
 	}
 
 	/**
