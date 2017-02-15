@@ -13,8 +13,6 @@ import org.usfirst.frc.team5546.robot.commands.intake.StartIntake;
 import org.usfirst.frc.team5546.robot.commands.intake.StopIntake;
 import org.usfirst.frc.team5546.robot.commands.shooter.DisableShooter;
 import org.usfirst.frc.team5546.robot.commands.shooter.RunShooter;
-import org.usfirst.frc.team5546.robot.commands.vision.StartVision;
-import org.usfirst.frc.team5546.robot.commands.vision.StopVision;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
