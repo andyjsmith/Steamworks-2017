@@ -14,6 +14,7 @@ public class Intake extends Subsystem {
     
     public Intake() {
     	motor = new VictorSP(RobotMap.INTAKE_MOTOR_PORT);
+    	motor.setInverted(true);
     }
 
     public void initDefaultCommand() {
