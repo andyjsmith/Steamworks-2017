@@ -10,7 +10,7 @@ public class PlaceGear extends CommandGroup {
 
     public PlaceGear() {
         addSequential(new Release());
-        addSequential(new WaitCommand(0.5));
+        addSequential(new WaitCommand(0.3));
         addSequential(new LowerGear());
     }
 }

@@ -10,7 +10,7 @@ public class PickUpGear extends CommandGroup {
 
     public PickUpGear() {
     	addSequential(new Grab());
-    	addSequential(new WaitCommand(0.5));
+    	addSequential(new WaitCommand(0.2));
     	addSequential(new LiftGear());
     }
 }
