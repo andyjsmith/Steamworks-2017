@@ -20,7 +20,7 @@ public class KeepShooterSpeed extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.talon.set(0.75);
+    	Robot.shooter.talon.set(0.5);
 //    	Robot.shooter.talon.enable();
 //    	Robot.shooter.talon.set(Shooter.IDEAL_SPEED);
     }
