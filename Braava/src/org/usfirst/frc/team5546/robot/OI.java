@@ -6,19 +6,19 @@ import org.usfirst.frc.team5546.robot.commands.compressor.StartCompressor;
 import org.usfirst.frc.team5546.robot.commands.compressor.StopCompressor;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.Drive;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveInverse;
-import org.usfirst.frc.team5546.robot.commands.driveTrain.Rotate;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PickUpGear;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PlaceGear;
 import org.usfirst.frc.team5546.robot.commands.intake.StartIntake;
 import org.usfirst.frc.team5546.robot.commands.intake.StopIntake;
 import org.usfirst.frc.team5546.robot.commands.shooter.DisableShooter;
 import org.usfirst.frc.team5546.robot.commands.shooter.RunShooter;
+import org.usfirst.frc.team5546.robot.commands.vision.StartVision;
+import org.usfirst.frc.team5546.robot.commands.vision.StopVision;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -47,6 +47,9 @@ public class OI {
 	public Button intakeOnBtn = new JoystickButton(stickRight, 11);
 	public Button intakeOffBtn = new JoystickButton(stickRight, 12);
 	
+	public Button gearLightBtn = new JoystickButton(stickLeft, 7);
+	public Button highgoalLightBtn = new JoystickButton(stickLeft, 8);
+	
 	public OI() {
 		switchDirectionForwardBtn.whenPressed(new Drive());
 		switchDirectionReverseBtn.whenPressed(new DriveInverse());
@@ -66,6 +69,7 @@ public class OI {
 		intakeOnBtn.whenPressed(new StartIntake());
 		intakeOffBtn.whenPressed(new StopIntake());
 		
-		SmartDashboard.putData("Rotate", new Rotate(90));
+		gearLightBtn.whenPressed(new StartVision());
+		highgoalLightBtn.whenPressed(new StopVision());
 	}
 }
