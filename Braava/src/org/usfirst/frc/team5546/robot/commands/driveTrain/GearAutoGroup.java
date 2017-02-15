@@ -1,12 +1,10 @@
 package org.usfirst.frc.team5546.robot.commands.driveTrain;
 
-import org.usfirst.frc.team5546.robot.commands.gearGrabber.LowerGear;
-import org.usfirst.frc.team5546.robot.commands.gearGrabber.Release;
+import org.usfirst.frc.team5546.robot.commands.gearGrabber.PlaceGear;
 import org.usfirst.frc.team5546.robot.commands.vision.StartVision;
 import org.usfirst.frc.team5546.robot.commands.vision.StopVision;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -33,9 +31,7 @@ public class GearAutoGroup extends CommandGroup {
     	
     	addSequential(new StartVision());
     	addSequential(new GearAuto());
-    	addSequential(new Release());
-    	addSequential(new WaitCommand(0.7));
-    	addSequential(new LowerGear());
+    	addSequential(new PlaceGear());
     	addSequential(new DriveFor(-1));
     	addParallel(new StopVision());
     }
