@@ -6,6 +6,7 @@ import org.usfirst.frc.team5546.robot.commands.vision.StartVision;
 import org.usfirst.frc.team5546.robot.commands.vision.StopVision;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -35,6 +36,7 @@ public class GearAutoGroup extends CommandGroup {
     	addSequential(new DriveUntilWall(0.3));
     	addSequential(new StopVision());
     	addSequential(new PlaceGear());
+    	addSequential(new WaitCommand(0.3));
     	addSequential(new DriveFor(-2, 0.5));
     	addSequential(new PickUpGear());
     }
