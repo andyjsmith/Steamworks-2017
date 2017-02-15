@@ -11,10 +11,11 @@ public class ShooterFeeder extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	VictorSP motor;
+	VictorSP feeder, agitator;
 	
 	public ShooterFeeder() {
-		motor = new VictorSP(4);
+		feeder = new VictorSP(4);
+		agitator = new VictorSP(7);
 	}
 
     public void initDefaultCommand() {
@@ -24,9 +25,11 @@ public class ShooterFeeder extends Subsystem {
     
     public void set(boolean enabled) {
     	if (enabled) {
-    		motor.set(1);
+    		feeder.set(1);
+    		agitator.set(-1);
     	} else {
-    		motor.set(0);
+    		feeder.set(0);
+    		agitator.set(0);
     	}
     }
 }
