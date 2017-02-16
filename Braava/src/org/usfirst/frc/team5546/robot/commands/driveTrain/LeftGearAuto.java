@@ -25,8 +25,8 @@ public class LeftGearAuto extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new DriveStraight(5.8));
-    	addSequential(new Rotate(45));
-    	addSequential(new GearAuto());
+    	addSequential(new DriveStraight(5.6));
+    	addSequential(new Rotate(55));
+    	addSequential(new GearAutoGroup());
     }
 }
