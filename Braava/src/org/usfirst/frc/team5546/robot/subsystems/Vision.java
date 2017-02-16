@@ -11,10 +11,13 @@ public class Vision extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	Solenoid light;
+	Solenoid gearLight;
+	Solenoid highGoalLight;
 	
 	public Vision() {
-		light = new Solenoid(7);
+		gearLight = new Solenoid(7);
+		highGoalLight = new Solenoid(6);
+		
 	}
 
     public void initDefaultCommand() {
@@ -22,8 +25,12 @@ public class Vision extends Subsystem {
         // setDefaultCommand(new StartVision());
     }
     
-    public void setLight(boolean enabled) {
-    	light.set(enabled);
+    public void setGearLight(boolean enabled) {
+    	gearLight.set(enabled);
+    }
+    
+    public void setHighGoalLight(boolean enabled) {
+    	highGoalLight.set(enabled);
     }
 }
 
