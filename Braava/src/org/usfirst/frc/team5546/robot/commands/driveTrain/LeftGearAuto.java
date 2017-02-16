@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LeftGearAuto extends CommandGroup {
 
     public LeftGearAuto() {
-    	addSequential(new DriveStraight(5.6));
-    	addSequential(new Rotate(55));
-    	addSequential(new GearAutoGroup());
+    	addSequential(new DriveStraight(5.6));	// drive using the gyro for an amount of feet
+    	addSequential(new Rotate(55));			// rotate to face the gear
+    	addSequential(new GearAutoGroup());		// run the normal vision code and place the gear
     }
 }

@@ -14,13 +14,13 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class GearAutoGroup extends CommandGroup {
 
     public GearAutoGroup() {
-    	addSequential(new StartGearVision());
-    	addSequential(new GearAuto());
-    	addSequential(new DriveUntilWall(0.3));
-    	addSequential(new StopGearVision());
-    	addSequential(new PlaceGear());
-    	addSequential(new WaitCommand(0.3));
-    	addSequential(new DriveFor(-2, 0.5));
-    	addSequential(new PickUpGear());
+    	addSequential(new StartGearVision());	// turn on the light
+    	addSequential(new GearAuto()); 			// run the vision code
+    	addSequential(new DriveUntilWall(0.3));	// drive with the ultrasonic sensor for the remaining distance
+    	addSequential(new StopGearVision());	// turn off the light
+    	addSequential(new PlaceGear());			// place the gear
+    	addSequential(new WaitCommand(0.3));	// wait for the piston to fully extend
+    	addSequential(new DriveFor(-2, 0.5));	// back up a little bit
+    	addSequential(new PickUpGear());		// bring the gear mech back up
     }
 }
