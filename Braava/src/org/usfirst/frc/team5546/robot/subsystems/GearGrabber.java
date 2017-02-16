@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5546.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -9,13 +10,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class GearGrabber extends Subsystem {
 
 
-	public DoubleSolenoid grabber;
-	public DoubleSolenoid lifter;
+	DoubleSolenoid grabber;
+	DoubleSolenoid lifter;
+	Solenoid chute;
 	
 	public GearGrabber() {
 		
 		lifter = new DoubleSolenoid(0, 1);
 		grabber = new DoubleSolenoid(2, 3);
+		chute = new Solenoid(4);
 	}
 	
     public void initDefaultCommand() {
@@ -35,6 +38,15 @@ public class GearGrabber extends Subsystem {
     
     public void lowerGear() {
     	lifter.set(DoubleSolenoid.Value.kReverse);
+    }
+    
+    public void extendChute() {
+    	chute.set(true);
+    }
+    
+    public void retractChute() {
+    	chute.set(false);
+    	
     }
 }
 
