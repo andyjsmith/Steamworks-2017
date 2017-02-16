@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5546.robot.commands.driveTrain;
 
 import org.usfirst.frc.team5546.robot.Robot;
-import org.usfirst.frc.team5546.robot.commands.vision.StartVision;
+import org.usfirst.frc.team5546.robot.commands.vision.StartGearVision;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
@@ -28,7 +28,7 @@ public class GearAuto extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		new StartVision(); // turn on light
+		new StartGearVision(); // turn on light
 		finished = false;
 	}
 

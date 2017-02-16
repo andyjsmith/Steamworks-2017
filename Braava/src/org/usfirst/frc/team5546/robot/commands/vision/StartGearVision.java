@@ -7,16 +7,16 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class StopVision extends Command {
+public class StartGearVision extends Command {
 
-    public StopVision() {
+    public StartGearVision() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.vision);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.vision.setGearLight(false);
+    	Robot.vision.setGearLight(true);
     }
 
     // Called repeatedly when this Command is scheduled to run
