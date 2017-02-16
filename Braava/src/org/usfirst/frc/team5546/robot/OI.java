@@ -8,10 +8,10 @@ import org.usfirst.frc.team5546.robot.commands.compressor.StartCompressor;
 import org.usfirst.frc.team5546.robot.commands.compressor.StopCompressor;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.Drive;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveInverse;
-import org.usfirst.frc.team5546.robot.commands.gearGrabber.Grab;
+import org.usfirst.frc.team5546.robot.commands.gearGrabber.CloseGearSlot;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PickUpGear;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PlaceGear;
-import org.usfirst.frc.team5546.robot.commands.gearGrabber.Release;
+import org.usfirst.frc.team5546.robot.commands.gearGrabber.PrepareGearSlot;
 import org.usfirst.frc.team5546.robot.commands.intake.StartIntake;
 import org.usfirst.frc.team5546.robot.commands.intake.StopIntake;
 import org.usfirst.frc.team5546.robot.commands.shooter.DisableShooter;
@@ -72,8 +72,8 @@ public class OI {
 		gearPickUpBtn.whenPressed(new EnableGearCamera());
 		gearPickUpBtn.whenReleased(new DisableGearCamera());
 		
-		gearSlotBtn.whenPressed(new Release());
-		gearSlotBtn.whenReleased(new Grab());
+		gearSlotBtn.whenPressed(new PrepareGearSlot());
+		gearSlotBtn.whenReleased(new CloseGearSlot());
 		
 		intakeOnBtn.whenPressed(new StartIntake());
 		intakeOffBtn.whenPressed(new StopIntake());
