@@ -10,7 +10,6 @@ import org.usfirst.frc.team5546.robot.commands.driveTrain.GearAutoGroup;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.LeftGearAuto;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.Rotate;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.TombOfTheUnknownSoldier;
-import org.usfirst.frc.team5546.robot.commands.vision.StartVision;
 import org.usfirst.frc.team5546.robot.subsystems.Climber;
 import org.usfirst.frc.team5546.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5546.robot.subsystems.GearGrabber;
@@ -229,8 +228,6 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putNumber("Pressure",
 				Math.floor((pressureSensor.getAverageVoltage() - 0.485) / 2.2518 * 120));
-		
-		new StartVision();
 	}
 
 	/**
