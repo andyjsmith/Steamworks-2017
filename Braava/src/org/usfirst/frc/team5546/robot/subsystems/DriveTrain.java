@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 /**
- *
+ * Robot drivetrain, uses PID for rotation and distance
  */
 public class DriveTrain extends PIDSubsystem {
 	

@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
- *
+ * Autonomous mode for placing a gear on the center pin of the airship
  */
 public class GearAutoGroup extends CommandGroup {
 
