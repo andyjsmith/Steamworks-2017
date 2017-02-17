@@ -1,8 +1,10 @@
 package org.usfirst.frc.team5546.robot.commands.shooter;
 
 import org.usfirst.frc.team5546.robot.Robot;
+import org.usfirst.frc.team5546.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -10,7 +12,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class KeepShooterSpeed extends Command {
 
     public KeepShooterSpeed() {
-        // Use requires() here to declare subsystem dependencies
         requires(Robot.shooter);
     }
 
@@ -20,9 +21,10 @@ public class KeepShooterSpeed extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.talon.set(0.5);
-//    	Robot.shooter.talon.enable();
-//    	Robot.shooter.talon.set(Shooter.IDEAL_SPEED);
+//    	Robot.shooter.talon.set(0.75);
+    	Robot.shooter.talon.enable();
+    	Robot.shooter.talon.set(Shooter.IDEAL_SPEED);
+    	SmartDashboard.putNumber("encoder", Robot.shooter.talon.getEncVelocity());
     }
 
     // Make this return true when this Command no longer needs to run execute()
