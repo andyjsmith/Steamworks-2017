@@ -3,6 +3,7 @@ package org.usfirst.frc.team5546.robot.commands.shooter;
 import org.usfirst.frc.team5546.robot.Robot;
 import org.usfirst.frc.team5546.robot.subsystems.Shooter;
 
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -10,9 +11,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class KeepShooterSpeed extends Command {
+	
+	PowerDistributionPanel pdp;
 
     public KeepShooterSpeed() {
         requires(Robot.shooter);
+        pdp = new PowerDistributionPanel();
     }
 
     // Called just before this Command runs the first time
@@ -23,7 +27,7 @@ public class KeepShooterSpeed extends Command {
     protected void execute() {
 //    	Robot.shooter.talon.set(0.75);
     	Robot.shooter.talon.enable();
-    	Robot.shooter.talon.set(Shooter.IDEAL_SPEED);
+    	Robot.shooter.talon.set(Shooter.IDEAL_SPEED * (12.5 / pdp.getVoltage()));
     	SmartDashboard.putNumber("encoder", Robot.shooter.talon.getEncVelocity());
     }
 
