@@ -2,14 +2,14 @@
 package org.usfirst.frc.team5546.robot;
 
 import org.opencv.core.Mat;
+import org.usfirst.frc.team5546.robot.commands.auto.GearAutoGroup;
+import org.usfirst.frc.team5546.robot.commands.auto.LeftGearAuto;
+import org.usfirst.frc.team5546.robot.commands.auto.TombOfTheUnknownSoldier;
 import org.usfirst.frc.team5546.robot.commands.compressor.StartCompressor;
 import org.usfirst.frc.team5546.robot.commands.compressor.StopCompressor;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.CenterToTape;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveStraight;
-import org.usfirst.frc.team5546.robot.commands.driveTrain.GearAutoGroup;
-import org.usfirst.frc.team5546.robot.commands.driveTrain.LeftGearAuto;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.Rotate;
-import org.usfirst.frc.team5546.robot.commands.driveTrain.TombOfTheUnknownSoldier;
 import org.usfirst.frc.team5546.robot.subsystems.Climber;
 import org.usfirst.frc.team5546.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5546.robot.subsystems.GearGrabber;

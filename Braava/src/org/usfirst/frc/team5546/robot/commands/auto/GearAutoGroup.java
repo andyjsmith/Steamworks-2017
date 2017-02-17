@@ -1,5 +1,8 @@
-package org.usfirst.frc.team5546.robot.commands.driveTrain;
+package org.usfirst.frc.team5546.robot.commands.auto;
 
+import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveFor;
+import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveUntilWall;
+import org.usfirst.frc.team5546.robot.commands.driveTrain.GearAuto;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PickUpGear;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PlaceGear;
 import org.usfirst.frc.team5546.robot.commands.vision.StartGearVision;

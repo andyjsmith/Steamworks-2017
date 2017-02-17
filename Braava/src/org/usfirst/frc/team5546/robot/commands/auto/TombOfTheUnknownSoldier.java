@@ -1,6 +1,8 @@
-package org.usfirst.frc.team5546.robot.commands.driveTrain;
+package org.usfirst.frc.team5546.robot.commands.auto;
 
 import org.usfirst.frc.team5546.robot.Robot;
+import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveStraight;
+import org.usfirst.frc.team5546.robot.commands.driveTrain.Rotate;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
