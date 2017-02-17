@@ -3,7 +3,6 @@ package org.usfirst.frc.team5546.robot.commands.driveTrain;
 import org.usfirst.frc.team5546.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -31,8 +30,8 @@ public class Rotate extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	SmartDashboard.putNumber("setpoint", Robot.driveTrain.getSetpoint());
-    	SmartDashboard.putNumber("imu", Robot.driveTrain.imu.getAngleZ());
+    	//SmartDashboard.putNumber("setpoint", Robot.driveTrain.getSetpoint());
+    	//SmartDashboard.putNumber("imu", Robot.driveTrain.imu.getAngleZ());
     }
 
     // Make this return true when this Command no longer needs to run execute()

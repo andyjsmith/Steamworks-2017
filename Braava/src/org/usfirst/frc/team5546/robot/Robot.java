@@ -9,6 +9,7 @@ import org.usfirst.frc.team5546.robot.commands.compressor.StartCompressor;
 import org.usfirst.frc.team5546.robot.commands.compressor.StopCompressor;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.CenterToTape;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveStraight;
+import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveToBoiler;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.Rotate;
 import org.usfirst.frc.team5546.robot.subsystems.Climber;
 import org.usfirst.frc.team5546.robot.subsystems.DriveTrain;
@@ -82,6 +83,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Tomb of the Unknown Soldier", new TombOfTheUnknownSoldier());
 		chooser.addObject("CenterToTape", new CenterToTape());
 		chooser.addObject("LeftGearAuto", new LeftGearAuto());
+		chooser.addObject("Boiler", new DriveToBoiler());
 
 		SmartDashboard.putData("Auto", chooser);
 
@@ -155,8 +157,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Encoder distance",
-				driveTrain.encoderLeft.getDistance() / driveTrain.DISTANCE_PER_FOOT);
+		//SmartDashboard.putNumber("Encoder distance",
+		//		driveTrain.encoderLeft.getDistance() / driveTrain.DISTANCE_PER_FOOT);
 		SmartDashboard.putNumber("Pressure",
 				Math.floor((pressureSensor.getAverageVoltage() - 0.485) / 2.2518 * 120));
 	}
