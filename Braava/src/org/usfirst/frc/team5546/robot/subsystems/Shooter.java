@@ -25,8 +25,8 @@ public class Shooter extends Subsystem {
 		talon.configMaxOutputVoltage(12);
 		talon.configPeakOutputVoltage(+12.0f, -12.0f);
 		talon.configNominalOutputVoltage(+0.0f, -0.0f);
-		talon.setF(0.025);
-		talon.setP(0.0001);
+		talon.setF(0.0045);
+		talon.setP(0.01);
 		talon.setI(0);
 		talon.setD(0.002);
 		
