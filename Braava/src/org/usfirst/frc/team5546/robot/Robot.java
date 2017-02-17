@@ -2,6 +2,7 @@
 package org.usfirst.frc.team5546.robot;
 
 import org.opencv.core.Mat;
+import org.usfirst.frc.team5546.robot.commands.auto.DriveToBoilerAuto;
 import org.usfirst.frc.team5546.robot.commands.auto.GearAutoGroup;
 import org.usfirst.frc.team5546.robot.commands.auto.LeftGearAuto;
 import org.usfirst.frc.team5546.robot.commands.auto.TombOfTheUnknownSoldier;
@@ -9,7 +10,6 @@ import org.usfirst.frc.team5546.robot.commands.compressor.StartCompressor;
 import org.usfirst.frc.team5546.robot.commands.compressor.StopCompressor;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.CenterToTape;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveStraight;
-import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveToBoiler;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.Rotate;
 import org.usfirst.frc.team5546.robot.subsystems.Climber;
 import org.usfirst.frc.team5546.robot.subsystems.DriveTrain;
@@ -83,7 +83,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Tomb of the Unknown Soldier", new TombOfTheUnknownSoldier());
 		chooser.addObject("CenterToTape", new CenterToTape());
 		chooser.addObject("LeftGearAuto", new LeftGearAuto());
-		chooser.addObject("Boiler", new DriveToBoiler());
+		chooser.addObject("Boiler", new DriveToBoilerAuto());
 
 		SmartDashboard.putData("Auto", chooser);
 
