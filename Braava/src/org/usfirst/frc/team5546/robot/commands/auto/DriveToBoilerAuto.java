@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5546.robot.commands.auto;
 
 import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveToBoiler;
+import org.usfirst.frc.team5546.robot.commands.shooter.RunShooter;
 import org.usfirst.frc.team5546.robot.commands.vision.StartHighGoalVision;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -15,5 +16,6 @@ public class DriveToBoilerAuto extends CommandGroup {
         addSequential(new StartHighGoalVision());
         addSequential(new WaitCommand(0.5));
         addSequential(new DriveToBoiler());
+        addSequential(new RunShooter());
     }
 }
