@@ -25,7 +25,7 @@ public class ShooterFeeder extends Subsystem {
     
     public void set(boolean enabled) {
     	if (enabled) {
-    		feeder.set(1);
+    		feeder.set(0.6);
     		agitator.set(-1);
     	} else {
     		feeder.set(0);
