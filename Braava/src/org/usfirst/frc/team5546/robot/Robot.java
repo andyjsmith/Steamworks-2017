@@ -2,6 +2,7 @@
 package org.usfirst.frc.team5546.robot;
 
 import org.opencv.core.Mat;
+import org.usfirst.frc.team5546.robot.commands.auto.CenterGearAuto;
 import org.usfirst.frc.team5546.robot.commands.auto.DriveToBoilerAuto;
 import org.usfirst.frc.team5546.robot.commands.auto.GearAutoGroup;
 import org.usfirst.frc.team5546.robot.commands.auto.LeftGearAuto;
@@ -84,6 +85,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("CenterToTape", new CenterToTape());
 		chooser.addObject("LeftGearAuto", new LeftGearAuto());
 		chooser.addObject("Boiler", new DriveToBoilerAuto());
+		chooser.addObject("CenterGearAuto", new CenterGearAuto());
 
 		SmartDashboard.putData("Auto", chooser);
 
