@@ -5,7 +5,7 @@ import org.opencv.core.Mat;
 import org.usfirst.frc.team5546.robot.commands.auto.CenterGearAuto;
 import org.usfirst.frc.team5546.robot.commands.auto.DriveToBoilerAuto;
 import org.usfirst.frc.team5546.robot.commands.auto.GearAutoGroup;
-import org.usfirst.frc.team5546.robot.commands.auto.LeftGearAuto;
+import org.usfirst.frc.team5546.robot.commands.auto.BoilerSideGearAuto;
 import org.usfirst.frc.team5546.robot.commands.auto.TombOfTheUnknownSoldier;
 import org.usfirst.frc.team5546.robot.commands.compressor.StartCompressor;
 import org.usfirst.frc.team5546.robot.commands.compressor.StopCompressor;
@@ -88,7 +88,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Drive for 3 feet", new DriveStraight(6));
 		chooser.addObject("Tomb of the Unknown Soldier", new TombOfTheUnknownSoldier());
 		chooser.addObject("CenterToTape", new CenterToTape());
-		chooser.addObject("LeftGearAuto", new LeftGearAuto());
+		chooser.addObject("LeftGearAuto", new BoilerSideGearAuto());
 		chooser.addObject("Boiler", new DriveToBoilerAuto());
 		chooser.addObject("CenterGearAuto", new CenterGearAuto());
 
