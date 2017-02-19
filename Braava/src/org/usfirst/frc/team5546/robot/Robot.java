@@ -30,7 +30,6 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Preferences;
-import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -62,12 +61,10 @@ public class Robot extends IterativeRobot {
 	public static UsbCamera camera, camera2;
 	
 	public static boolean gearCamera = false;
-
-	VictorSP tempMotor;
 	
 	AnalogInput pressureSensor;
-	PowerDistributionPanel pdp;
-	DriverStation driverStation;
+	public PowerDistributionPanel pdp;
+	public DriverStation driverStation;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
