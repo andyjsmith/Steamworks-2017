@@ -84,7 +84,7 @@ public class Robot extends IterativeRobot {
 		// Auto modes
 		chooser.addDefault("(Default) Place Gear and Shoot", new PlaceGearAndShoot());
 		chooser.addObject("Do Nothing", new DoNothingAuto());
-		SmartDashboard.putData("Auto", chooser);
+		SmartDashboard.putData("Autonomous", chooser);
 		
 		// Auto position
 		positionChooser.addDefault("Boiler", Position.BOILER);
@@ -167,6 +167,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Pressure",
 				Math.floor((pressureSensor.getAverageVoltage() - 0.485) / 2.2518 * 120));
 		SmartDashboard.putString("View", cameraDirection);
+		SmartDashboard.putData("pdp", pdp);
+		SmartDashboard.putData("talon", Robot.shooter.talon);
 	}
 
 	/**
