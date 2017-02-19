@@ -4,7 +4,6 @@ import org.usfirst.frc.team5546.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -51,9 +50,6 @@ public class DriveToBoiler extends Command {
 				finished = true;
 				Robot.driveTrain.driveArcade(0, 0);
 			}
-			
-			SmartDashboard.putNumber("area", area);
-			SmartDashboard.putNumber("midpoint", midpoint);
 		}
 	}
 
