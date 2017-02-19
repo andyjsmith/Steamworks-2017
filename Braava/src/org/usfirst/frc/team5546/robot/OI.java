@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5546.robot;
 
+import org.usfirst.frc.team5546.robot.commands.auto.DriveToBoilerAuto;
 import org.usfirst.frc.team5546.robot.commands.cameras.DisableGearCamera;
 import org.usfirst.frc.team5546.robot.commands.cameras.EnableGearCamera;
 import org.usfirst.frc.team5546.robot.commands.climber.Climb;
@@ -48,13 +49,14 @@ public class OI {
 
 	public Button gearSlotBtn = new JoystickButton(stickLeft, 1);
 	
-	public Button intakeOnBtn = new JoystickButton(stickRight, 11);
-	public Button intakeOffBtn = new JoystickButton(stickRight, 12);
+	public Button intakeBtn = new JoystickButton(launchpad, 4);
 	
 	public Button climberBtn = new JoystickButton(launchpad, 7);
 	
 	public Button gearLightBtn = new JoystickButton(stickLeft, 7);
 	public Button highgoalLightBtn = new JoystickButton(stickLeft, 8);
+	
+	public Button boilerBtn = new JoystickButton(stickRight, 9);
 	
 	public OI() {
 		switchDirectionForwardBtn.whenPressed(new Drive());
@@ -75,11 +77,13 @@ public class OI {
 		gearSlotBtn.whenPressed(new PrepareGearSlot());
 		gearSlotBtn.whenReleased(new CloseGearSlot());
 		
-		intakeOnBtn.whenPressed(new StartIntake());
-		intakeOffBtn.whenPressed(new StopIntake());
+		intakeBtn.whenReleased(new StartIntake());
+		intakeBtn.whenPressed(new StopIntake());
 		
 		gearLightBtn.whenPressed(new StartGearVision());
 		highgoalLightBtn.whenPressed(new StopGearVision());
+		
+		boilerBtn.whenPressed(new DriveToBoilerAuto());
 		
 		climberBtn.whenPressed(new Climb());
 		climberBtn.whenReleased(new StopClimb());
