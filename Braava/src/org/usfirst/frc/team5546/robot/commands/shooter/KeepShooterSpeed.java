@@ -1,17 +1,14 @@
 package org.usfirst.frc.team5546.robot.commands.shooter;
 
 import org.usfirst.frc.team5546.robot.Robot;
+import org.usfirst.frc.team5546.robot.subsystems.Shooter;
 
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class KeepShooterSpeed extends Command {
-	
-	PowerDistributionPanel pdp;
 
     public KeepShooterSpeed() {
         requires(Robot.shooter);
@@ -23,10 +20,9 @@ public class KeepShooterSpeed extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.talon.set(0.65 * (12.5 / Robot.pdp.getVoltage()));
-//    	Robot.shooter.talon.enable();
-//    	Robot.shooter.talon.set(Shooter.IDEAL_SPEED * (12.5 / Robot.pdp.getVoltage()));
-    	SmartDashboard.putNumber("encoder", Robot.shooter.talon.getEncVelocity());
+//    	Robot.shooter.talon.set(0.65 * (12.5 / Robot.pdp.getVoltage()));
+    	Robot.shooter.talon.enable();
+    	Robot.shooter.talon.set(Shooter.IDEAL_SPEED * (12.5 / Robot.pdp.getVoltage()));
     }
 
     // Make this return true when this Command no longer needs to run execute()
