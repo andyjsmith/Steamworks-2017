@@ -2,16 +2,10 @@
 package org.usfirst.frc.team5546.robot;
 
 import org.opencv.core.Mat;
-import org.usfirst.frc.team5546.robot.commands.auto.CenterGearAuto;
-import org.usfirst.frc.team5546.robot.commands.auto.DriveToBoilerAuto;
-import org.usfirst.frc.team5546.robot.commands.auto.GearAutoGroup;
-import org.usfirst.frc.team5546.robot.commands.auto.BoilerSideGearAuto;
-import org.usfirst.frc.team5546.robot.commands.auto.TombOfTheUnknownSoldier;
+import org.usfirst.frc.team5546.robot.commands.auto.DoNothingAuto;
+import org.usfirst.frc.team5546.robot.commands.auto.PlaceGearAndShoot;
 import org.usfirst.frc.team5546.robot.commands.compressor.StartCompressor;
 import org.usfirst.frc.team5546.robot.commands.compressor.StopCompressor;
-import org.usfirst.frc.team5546.robot.commands.driveTrain.CenterToTape;
-import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveStraight;
-import org.usfirst.frc.team5546.robot.commands.driveTrain.Rotate;
 import org.usfirst.frc.team5546.robot.subsystems.Climber;
 import org.usfirst.frc.team5546.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5546.robot.subsystems.GearGrabber;
@@ -67,9 +61,14 @@ public class Robot extends IterativeRobot {
 	public static DriverStation driverStation;
 	
 	String cameraDirection = "";
+	
+	public enum Position {
+		BOILER, LOADINGSTATION, CENTER
+	}
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
+	public static SendableChooser<Position> positionChooser = new SendableChooser<>(); 
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -83,16 +82,15 @@ public class Robot extends IterativeRobot {
 		pdp = new PowerDistributionPanel();
 		
 		// Auto modes
-		chooser.addDefault("Gear Middle", new GearAutoGroup());
-		chooser.addObject("Rotate 90deg", new Rotate(90));
-		chooser.addObject("Drive for 3 feet", new DriveStraight(6));
-		chooser.addObject("Tomb of the Unknown Soldier", new TombOfTheUnknownSoldier());
-		chooser.addObject("CenterToTape", new CenterToTape());
-		chooser.addObject("LeftGearAuto", new BoilerSideGearAuto());
-		chooser.addObject("Boiler", new DriveToBoilerAuto());
-		chooser.addObject("CenterGearAuto", new CenterGearAuto());
-
+		chooser.addDefault("(Default) Place Gear and Shoot", new PlaceGearAndShoot());
+		chooser.addObject("Do Nothing", new DoNothingAuto());
 		SmartDashboard.putData("Auto", chooser);
+		
+		// Auto position
+		positionChooser.addDefault("Boiler", Position.BOILER);
+		positionChooser.addObject("Loading Station", Position.LOADINGSTATION);
+		positionChooser.addObject("Center", Position.CENTER);
+		SmartDashboard.putData("Position", positionChooser);
 
 		pressureSensor = new AnalogInput(1);
 
