@@ -26,6 +26,7 @@ import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Preferences;
@@ -66,6 +67,7 @@ public class Robot extends IterativeRobot {
 	
 	AnalogInput pressureSensor;
 	PowerDistributionPanel pdp;
+	DriverStation driverStation;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -78,6 +80,10 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		prefs = Preferences.getInstance();
+		driverStation = DriverStation.getInstance();
+		pdp = new PowerDistributionPanel();
+		
+		// Auto modes
 		chooser.addDefault("Gear Middle", new GearAutoGroup());
 		chooser.addObject("Rotate 90deg", new Rotate(90));
 		chooser.addObject("Drive for 3 feet", new DriveStraight(6));
@@ -89,8 +95,6 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putData("Auto", chooser);
 
-		// tempMotor = new VictorSP(4);
-		// compressor = new Compressor();
 		pressureSensor = new AnalogInput(1);
 
 		// Camera
