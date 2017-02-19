@@ -65,6 +65,8 @@ public class Robot extends IterativeRobot {
 	AnalogInput pressureSensor;
 	public PowerDistributionPanel pdp;
 	public DriverStation driverStation;
+	
+	String cameraDirection = "";
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -128,16 +130,19 @@ public class Robot extends IterativeRobot {
 					cvSinkForward.setEnabled(false);
 					cvSinkGear.setEnabled(true);
 					cvSinkGear.grabFrame(image);
+					cameraDirection = "Gear Pickup";
 				} else if (drivingForward) {
 					cvSinkReverse.setEnabled(false);
 					cvSinkGear.setEnabled(false);
 					cvSinkForward.setEnabled(true);
 					cvSinkForward.grabFrame(image);
+					cameraDirection = "Gear";
 				} else {
 					cvSinkForward.setEnabled(false);
 					cvSinkGear.setEnabled(false);
 					cvSinkReverse.setEnabled(true);
 					cvSinkReverse.grabFrame(image);
+					cameraDirection = "Intake & Shooter";
 				}
 
 				outputStream.putFrame(image);
@@ -164,6 +169,7 @@ public class Robot extends IterativeRobot {
 		//		driveTrain.encoderLeft.getDistance() / driveTrain.DISTANCE_PER_FOOT);
 		SmartDashboard.putNumber("Pressure",
 				Math.floor((pressureSensor.getAverageVoltage() - 0.485) / 2.2518 * 120));
+		SmartDashboard.putString("View", cameraDirection);
 	}
 
 	/**
@@ -233,6 +239,7 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putNumber("Pressure",
 				Math.floor((pressureSensor.getAverageVoltage() - 0.485) / 2.2518 * 120));
+		SmartDashboard.putString("View", cameraDirection);
 	}
 
 	/**
