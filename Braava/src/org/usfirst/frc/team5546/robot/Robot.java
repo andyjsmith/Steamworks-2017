@@ -63,8 +63,8 @@ public class Robot extends IterativeRobot {
 	public static boolean gearCamera = false;
 	
 	AnalogInput pressureSensor;
-	public PowerDistributionPanel pdp;
-	public DriverStation driverStation;
+	public static PowerDistributionPanel pdp;
+	public static DriverStation driverStation;
 	
 	String cameraDirection = "";
 
