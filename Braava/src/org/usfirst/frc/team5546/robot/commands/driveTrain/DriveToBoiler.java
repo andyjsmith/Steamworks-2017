@@ -17,7 +17,7 @@ public class DriveToBoiler extends Command {
 	final int IMAGE_WIDTH = 320;
 	final int IMAGE_MIDPOINT = 160;
 	
-	final double IDEAL_AREA = 1350; //1250
+	final double IDEAL_AREA = 1550; //1250
 	
 	boolean finished = false;
 
