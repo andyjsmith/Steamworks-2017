@@ -2,24 +2,38 @@ package org.usfirst.frc.team5546.robot.commands.auto;
 
 import org.usfirst.frc.team5546.robot.Robot;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class PlaceGearAndShoot extends CommandGroup {
+public class PlaceGearAndShoot extends Command {
+	
+	boolean finished = false;
 
-    public PlaceGearAndShoot() {
-        switch (Robot.positionChooser.getSelected()) {
+	public PlaceGearAndShoot() {
+	}
+
+	protected void initialize() {
+	}
+	
+	protected void execute() {
+		switch (Robot.positionChooser.getSelected()) {
 		case BOILER:
-			addSequential(new BoilerSideGearAuto());
+			new BoilerSideGearAuto();
 			break;
 		case LOADINGSTATION:
-			addSequential(new LoadingStationSideGearAuto());
+			new LoadingStationSideGearAuto();
 			break;
 		case CENTER:
-			addSequential(new CenterGearAuto());
+			new CenterGearAuto();
 			break;
 		}
-    }
+		finished = true;
+	}
+
+	@Override
+	protected boolean isFinished() {
+		return finished;
+	}
 }
