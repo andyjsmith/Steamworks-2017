@@ -50,9 +50,6 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 
 	public static Preferences prefs;
-
-	public static CameraServer cameraServer;
-	public static UsbCamera camera, camera2;
 	
 	public static boolean gearCamera = false;
 	
