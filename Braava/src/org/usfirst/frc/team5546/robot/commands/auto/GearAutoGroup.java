@@ -20,6 +20,7 @@ public class GearAutoGroup extends CommandGroup {
     	addSequential(new StartGearVision());	// turn on the light
     	addSequential(new GearAuto()); 			// run the vision code
     	addSequential(new DriveUntilWall(0.3));	// drive with the ultrasonic sensor for the remaining distance
+    	//addSequential(new DriveFor(0.3, 0.2));
     	addSequential(new StopGearVision());	// turn off the light
     	addSequential(new PlaceGear());			// place the gear
     	addSequential(new WaitCommand(0.3));	// wait for the piston to fully extend
