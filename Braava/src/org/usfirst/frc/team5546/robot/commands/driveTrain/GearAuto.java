@@ -47,7 +47,7 @@ public class GearAuto extends Command {
 					(visionTable.getNumberArray("height", new double[2])[0] + 
 					visionTable.getNumberArray("height", new double[2])[1]);
 			
-			if (area >= 4500.0) { //6900.0
+			if (area >= 4000.0) { //6900.0
 				finished = true;
 				Robot.driveTrain.driveArcade(0, 0);
 			}
@@ -61,6 +61,7 @@ public class GearAuto extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
+		System.out.println("Finished GearAuto");
 	}
 
 	// Called when another command which requires one or more of the same
