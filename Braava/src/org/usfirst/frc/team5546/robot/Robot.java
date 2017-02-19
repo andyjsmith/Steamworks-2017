@@ -163,8 +163,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		//SmartDashboard.putNumber("Encoder distance",
-		//		driveTrain.encoderLeft.getDistance() / driveTrain.DISTANCE_PER_FOOT);
+		SmartDashboard.putData("Scheduler", Scheduler.getInstance());
 		SmartDashboard.putNumber("Pressure",
 				Math.floor((pressureSensor.getAverageVoltage() - 0.485) / 2.2518 * 120));
 		SmartDashboard.putString("View", cameraDirection);
@@ -205,7 +204,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		
+		SmartDashboard.putData("Scheduler", Scheduler.getInstance());
 		SmartDashboard.putNumber("Pressure",
 				Math.floor((pressureSensor.getAverageVoltage() - 0.485) / 2.2518 * 120));
 	}
@@ -234,7 +233,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-
+		SmartDashboard.putData("Scheduler", Scheduler.getInstance());
 		SmartDashboard.putNumber("Pressure",
 				Math.floor((pressureSensor.getAverageVoltage() - 0.485) / 2.2518 * 120));
 		SmartDashboard.putString("View", cameraDirection);
