@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- * Autonomous mode for placing a gear on the left side of the airship
+ * Autonomous mode for placing a gear on the boiler side of the airship and shooting high goals
  */
 public class BoilerSideGearAuto extends CommandGroup {
 
