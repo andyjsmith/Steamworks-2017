@@ -2,8 +2,13 @@
 package org.usfirst.frc.team5546.robot;
 
 import org.opencv.core.Mat;
+import org.usfirst.frc.team5546.robot.commands.auto.BoilerSideGearAutoBlue;
+import org.usfirst.frc.team5546.robot.commands.auto.BoilerSideGearAutoRed;
+import org.usfirst.frc.team5546.robot.commands.auto.CenterGearAutoBlue;
+import org.usfirst.frc.team5546.robot.commands.auto.CenterGearAutoRed;
 import org.usfirst.frc.team5546.robot.commands.auto.DoNothingAuto;
-import org.usfirst.frc.team5546.robot.commands.auto.PlaceGearAndShoot;
+import org.usfirst.frc.team5546.robot.commands.auto.LoadingStationSideGearAutoBlue;
+import org.usfirst.frc.team5546.robot.commands.auto.LoadingStationSideGearAutoRed;
 import org.usfirst.frc.team5546.robot.commands.compressor.StartCompressor;
 import org.usfirst.frc.team5546.robot.commands.compressor.StopCompressor;
 import org.usfirst.frc.team5546.robot.subsystems.Climber;
@@ -18,6 +23,7 @@ import org.usfirst.frc.team5546.robot.subsystems.Vision;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -58,14 +64,9 @@ public class Robot extends IterativeRobot {
 	public static DriverStation driverStation;
 	
 	String cameraDirection = "";
-	
-	public enum Position {
-		BOILER, LOADINGSTATION, CENTER
-	}
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-	public static SendableChooser<Position> positionChooser = new SendableChooser<>(); 
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -79,15 +80,14 @@ public class Robot extends IterativeRobot {
 		pdp = new PowerDistributionPanel();
 		
 		// Auto modes
-		chooser.addDefault("(Default) Place Gear and Shoot", new PlaceGearAndShoot());
-		chooser.addObject("Do Nothing", new DoNothingAuto());
-		SmartDashboard.putData("Autonomous", chooser);
-		
-		// Auto position
-		positionChooser.addDefault("Boiler", Position.BOILER);
-		positionChooser.addObject("Loading Station", Position.LOADINGSTATION);
-		positionChooser.addObject("Center", Position.CENTER);
-		SmartDashboard.putData("Position", positionChooser);
+		chooser.addDefault("Boiler side - BLUE", new BoilerSideGearAutoBlue());
+		chooser.addObject("Boiler side - RED", new BoilerSideGearAutoRed());
+		chooser.addObject("Center - BLUE", new CenterGearAutoBlue());
+		chooser.addObject("Center - RED", new CenterGearAutoRed());
+		chooser.addObject("Loading Station side - BLUE", new LoadingStationSideGearAutoBlue());
+		chooser.addObject("Loading Station side - RED", new LoadingStationSideGearAutoRed());
+		chooser.addObject("(Default) Do Nothing", new DoNothingAuto());
+		SmartDashboard.putData("Auto mode", chooser);
 
 		pressureSensor = new AnalogInput(1);
 
@@ -124,19 +124,19 @@ public class Robot extends IterativeRobot {
 					cvSinkReverse.setEnabled(false);
 					cvSinkForward.setEnabled(false);
 					cvSinkGear.setEnabled(true);
-					cvSinkGear.grabFrame(image);
+					cvSinkGear.grabFrameNoTimeout(image);
 					cameraDirection = "Gear Pickup";
 				} else if (drivingForward) {
 					cvSinkReverse.setEnabled(false);
 					cvSinkGear.setEnabled(false);
 					cvSinkForward.setEnabled(true);
-					cvSinkForward.grabFrame(image);
+					cvSinkForward.grabFrameNoTimeout(image);
 					cameraDirection = "Gear";
 				} else {
 					cvSinkForward.setEnabled(false);
 					cvSinkGear.setEnabled(false);
 					cvSinkReverse.setEnabled(true);
-					cvSinkReverse.grabFrame(image);
+					cvSinkReverse.grabFrameNoTimeout(image);
 					cameraDirection = "Intake & Shooter";
 				}
 
@@ -236,6 +236,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Pressure",
 				Math.floor((pressureSensor.getAverageVoltage() - 0.485) / 2.2518 * 120));
 		SmartDashboard.putString("View", cameraDirection);
+		SmartDashboard.putData("pdp", pdp);
+		SmartDashboard.putData("talon", Robot.shooter.talon);
+		SmartDashboard.putNumber("talon velocity", shooter.talon.getEncVelocity());
 	}
 
 	/**
