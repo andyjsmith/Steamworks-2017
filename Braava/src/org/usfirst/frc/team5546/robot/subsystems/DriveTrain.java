@@ -69,6 +69,6 @@ public class DriveTrain extends PIDSubsystem {
     }
     
     public boolean getUltrasonicSensor() {
-    	return ultrasonic.getAverageVoltage() < 4.0;
+    	return ultrasonic.getAverageVoltage() < 4.9;
     }
 }
