@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5546.robot.commands.auto;
 
+import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveInverse;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveToBoiler;
 import org.usfirst.frc.team5546.robot.commands.shooter.KeepShooterSpeed;
 import org.usfirst.frc.team5546.robot.commands.shooter.StartFeeder;
@@ -19,5 +20,6 @@ public class DriveToBoilerAuto extends CommandGroup {
         addParallel(new KeepShooterSpeed());
         addSequential(new DriveToBoiler());
         addParallel(new StartFeeder());
+        addSequential(new DriveInverse());
     }
 }
