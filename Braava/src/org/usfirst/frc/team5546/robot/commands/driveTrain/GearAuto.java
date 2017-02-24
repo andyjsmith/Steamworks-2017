@@ -16,7 +16,7 @@ public class GearAuto extends Command {
 
 	final int IMAGE_WIDTH = 320;
 	//final int IMAGE_MIDPOINT = IMAGE_WIDTH / 2;
-	final int IMAGE_MIDPOINT = 155;
+	final int IMAGE_MIDPOINT = 150;
 	
 	boolean finished = false;
 
