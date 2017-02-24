@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5546.robot;
 
 import org.usfirst.frc.team5546.robot.commands.auto.DriveToBoilerAuto;
+import org.usfirst.frc.team5546.robot.commands.auto.GearAutoGroup;
 import org.usfirst.frc.team5546.robot.commands.cameras.DisableGearCamera;
 import org.usfirst.frc.team5546.robot.commands.cameras.EnableGearCamera;
 import org.usfirst.frc.team5546.robot.commands.climber.Climb;
@@ -17,8 +18,6 @@ import org.usfirst.frc.team5546.robot.commands.intake.StartIntake;
 import org.usfirst.frc.team5546.robot.commands.intake.StopIntake;
 import org.usfirst.frc.team5546.robot.commands.shooter.DisableShooter;
 import org.usfirst.frc.team5546.robot.commands.shooter.RunShooter;
-import org.usfirst.frc.team5546.robot.commands.vision.StartGearVision;
-import org.usfirst.frc.team5546.robot.commands.vision.StopGearVision;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -40,23 +39,20 @@ public class OI {
 	// Switching drive directions
 	public boolean inverseDrive = false;
 	public Button switchDirectionForwardBtn = new JoystickButton(stickRight, 2);
-	public Button switchDirectionReverseBtn = new JoystickButton(stickRight, 3);
+	public Button switchDirectionReverseBtn = new JoystickButton(stickLeft, 2);
 	
 	public Button compressorBtn = new JoystickButton(launchpad, 3);
 	public Button shooterFeederBtn = new JoystickButton(launchpad, 2);
-	
-	public Button gearPickUpBtn = new JoystickButton(stickRight, 1);
-
-	public Button gearSlotBtn = new JoystickButton(stickLeft, 1);
-	
 	public Button intakeBtn = new JoystickButton(launchpad, 4);
-	
 	public Button climberBtn = new JoystickButton(launchpad, 7);
 	
-	public Button gearLightBtn = new JoystickButton(stickLeft, 7);
-	public Button highgoalLightBtn = new JoystickButton(stickLeft, 8);
+	public Button gearPickUpBtn = new JoystickButton(stickRight, 1);
+	public Button gearSlotBtn = new JoystickButton(stickLeft, 1);
 	
-	public Button boilerBtn = new JoystickButton(stickRight, 9);
+	public Button boilerBtn = new JoystickButton(xbox, 1);
+	public Button gearBtn = new JoystickButton(xbox, 2);
+	
+	public Button agitatorFixBtn = new JoystickButton(stickRight, 7);
 	
 	public OI() {
 		switchDirectionForwardBtn.whenPressed(new Drive());
@@ -80,10 +76,8 @@ public class OI {
 		intakeBtn.whenReleased(new StartIntake());
 		intakeBtn.whenPressed(new StopIntake());
 		
-		gearLightBtn.whenPressed(new StartGearVision());
-		highgoalLightBtn.whenPressed(new StopGearVision());
-		
 		boilerBtn.whenPressed(new DriveToBoilerAuto());
+		gearBtn.whenPressed(new GearAutoGroup());
 		
 		climberBtn.whenPressed(new Climb());
 		climberBtn.whenReleased(new StopClimb());
