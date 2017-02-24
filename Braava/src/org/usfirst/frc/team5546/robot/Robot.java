@@ -23,7 +23,6 @@ import org.usfirst.frc.team5546.robot.subsystems.Vision;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
-import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -166,6 +165,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putString("View", cameraDirection);
 		SmartDashboard.putData("pdp", pdp);
 		SmartDashboard.putData("talon", Robot.shooter.talon);
+		SmartDashboard.putNumber("talon velocity", shooter.talon.getEncVelocity());
 	}
 
 	/**
