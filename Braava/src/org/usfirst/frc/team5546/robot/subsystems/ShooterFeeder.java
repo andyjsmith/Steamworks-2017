@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5546.robot.subsystems;
 
+import org.usfirst.frc.team5546.robot.Robot;
+
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -25,8 +27,8 @@ public class ShooterFeeder extends Subsystem {
     
     public void set(boolean enabled) {
     	if (enabled) {
-    		feeder.set(0.6);
-    		agitator.set(-1);
+    		feeder.set(0.75); //0.35
+    		agitator.set(Robot.oi.agitatorFixBtn.get() ? 1 : -1);
     	} else {
     		feeder.set(0);
     		agitator.set(0);
