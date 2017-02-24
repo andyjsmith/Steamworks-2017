@@ -1,7 +1,6 @@
 package org.usfirst.frc.team5546.robot.commands.auto;
 
 import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveFor;
-import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveUntilWall;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.GearAuto;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PickUpGear;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PlaceGear;
@@ -18,9 +17,10 @@ public class GearAutoGroup extends CommandGroup {
 
     public GearAutoGroup() {
     	addSequential(new StartGearVision());	// turn on the light
+    	addSequential(new WaitCommand(0.3));
     	addSequential(new GearAuto()); 			// run the vision code
-    	addSequential(new DriveUntilWall(0.3));	// drive with the ultrasonic sensor for the remaining distance
-    	//addSequential(new DriveFor(0.3, 0.2));
+    	//addSequential(new DriveUntilWall(0.3));	// drive with the ultrasonic sensor for the remaining distance
+    	addSequential(new DriveFor(0.3, 0.5));
     	addSequential(new StopGearVision());	// turn off the light
     	addSequential(new PlaceGear());			// place the gear
     	addSequential(new WaitCommand(0.3));	// wait for the piston to fully extend
