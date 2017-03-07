@@ -16,7 +16,9 @@ public class LowerGear extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.gearGrabber.lowerGear();
+    	if (!Robot.oi.cancelGearBtn.get()) {
+    		Robot.gearGrabber.lowerGear();
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

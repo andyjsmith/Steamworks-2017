@@ -54,6 +54,8 @@ public class OI {
 	
 	public Button agitatorFixBtn = new JoystickButton(stickRight, 7);
 	
+	public Button cancelGearBtn = new JoystickButton(launchpad, 50000);
+	
 	public OI() {
 		switchDirectionForwardBtn.whenPressed(new Drive());
 		switchDirectionReverseBtn.whenPressed(new DriveInverse());
