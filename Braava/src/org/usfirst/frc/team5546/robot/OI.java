@@ -20,7 +20,6 @@ import org.usfirst.frc.team5546.robot.commands.shooter.DisableShooter;
 import org.usfirst.frc.team5546.robot.commands.shooter.RunShooter;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -31,10 +30,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	
 	// Joysticks
-	public XboxController xbox = new XboxController(0);
-	public Joystick stickLeft = new Joystick(1);
-	public Joystick stickRight = new Joystick(2);
-	public Joystick launchpad = new Joystick(3);
+	public Joystick stickLeft = new Joystick(0);
+	public Joystick stickRight = new Joystick(1);
+	public Joystick launchpad = new Joystick(2);
 	
 	// Switching drive directions
 	public boolean inverseDrive = false;
@@ -43,25 +41,25 @@ public class OI {
 	
 	public Button compressorBtn = new JoystickButton(launchpad, 3);
 	public Button shooterFeederBtn = new JoystickButton(launchpad, 2);
-	public Button intakeBtn = new JoystickButton(launchpad, 4);
-	public Button climberBtn = new JoystickButton(launchpad, 7);
+	public Button intakeBtn = new JoystickButton(launchpad, 1);
+	public Button climberBtn = new JoystickButton(launchpad, 4);
 	
 	public Button gearPickUpBtn = new JoystickButton(stickRight, 1);
 	public Button gearSlotBtn = new JoystickButton(stickLeft, 1);
 	
-	public Button boilerBtn = new JoystickButton(xbox, 1);
-	public Button gearBtn = new JoystickButton(xbox, 2);
+	public Button boilerBtn = new JoystickButton(launchpad, 9);
+	public Button gearBtn = new JoystickButton(launchpad, 8);
 	
-	public Button agitatorFixBtn = new JoystickButton(stickRight, 7);
+	public Button agitatorFixBtn = new JoystickButton(launchpad, 6);
 	
-	public Button cancelGearBtn = new JoystickButton(launchpad, 50000);
+	public Button cancelGearBtn = new JoystickButton(launchpad, 5);
 	
 	public OI() {
 		switchDirectionForwardBtn.whenPressed(new Drive());
 		switchDirectionReverseBtn.whenPressed(new DriveInverse());
 		
-		compressorBtn.whenPressed(new StopCompressor());
-		compressorBtn.whenReleased(new StartCompressor());
+		compressorBtn.whenPressed(new StartCompressor());
+		compressorBtn.whenReleased(new StopCompressor());
 		
 		shooterFeederBtn.whenReleased(new RunShooter());
 		shooterFeederBtn.whenPressed(new DisableShooter());
