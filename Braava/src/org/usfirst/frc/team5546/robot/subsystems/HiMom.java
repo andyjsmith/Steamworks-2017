@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * EL-wire "Hi Mom" sign
  */
 public class HiMom extends Subsystem {
 

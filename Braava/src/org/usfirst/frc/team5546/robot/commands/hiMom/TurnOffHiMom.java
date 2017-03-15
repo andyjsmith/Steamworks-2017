@@ -5,7 +5,7 @@ import org.usfirst.frc.team5546.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Turns off the "Hi Mom" wire sign
  */
 public class TurnOffHiMom extends Command {
 

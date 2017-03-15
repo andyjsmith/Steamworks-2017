@@ -7,7 +7,7 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * Ball shooter
  */
 public class Shooter extends Subsystem {
 	

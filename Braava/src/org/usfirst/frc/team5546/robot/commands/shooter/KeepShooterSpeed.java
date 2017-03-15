@@ -5,7 +5,7 @@ import org.usfirst.frc.team5546.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Keeps the ball shooter at a constant speed based on the PDP voltage
  */
 public class KeepShooterSpeed extends Command {
 
@@ -19,6 +19,7 @@ public class KeepShooterSpeed extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	// Scales the speed based on a proportion of ideal voltage over actual voltage
     	Robot.shooter.talon.set(0.59 * (12.5 / Robot.pdp.getVoltage()));
 //    	Robot.shooter.talon.enable();
 //    	Robot.shooter.talon.set(Shooter.IDEAL_SPEED * (12.5 / Robot.pdp.getVoltage()));
