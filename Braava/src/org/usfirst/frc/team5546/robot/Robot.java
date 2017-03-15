@@ -14,6 +14,7 @@ import org.usfirst.frc.team5546.robot.commands.compressor.StopCompressor;
 import org.usfirst.frc.team5546.robot.subsystems.Climber;
 import org.usfirst.frc.team5546.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5546.robot.subsystems.GearGrabber;
+import org.usfirst.frc.team5546.robot.subsystems.HiMom;
 import org.usfirst.frc.team5546.robot.subsystems.Intake;
 import org.usfirst.frc.team5546.robot.subsystems.PneumaticCompressor;
 import org.usfirst.frc.team5546.robot.subsystems.Shooter;
@@ -52,6 +53,7 @@ public class Robot extends IterativeRobot {
 	public static final GearGrabber gearGrabber = new GearGrabber();
 	public static final ShooterFeeder feeder = new ShooterFeeder();
 	public static final Climber climber = new Climber();
+	public static final HiMom hiMom = new HiMom();
 	public static OI oi;
 
 	public static Preferences prefs;

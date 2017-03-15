@@ -14,6 +14,7 @@ import org.usfirst.frc.team5546.robot.commands.gearGrabber.CloseGearSlot;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PickUpGear;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PlaceGear;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PrepareGearSlot;
+import org.usfirst.frc.team5546.robot.commands.hiMom.TurnOnHiMom;
 import org.usfirst.frc.team5546.robot.commands.intake.StartIntake;
 import org.usfirst.frc.team5546.robot.commands.intake.StopIntake;
 import org.usfirst.frc.team5546.robot.commands.shooter.DisableShooter;
@@ -54,6 +55,8 @@ public class OI {
 	
 	public Button cancelGearBtn = new JoystickButton(launchpad, 5);
 	
+	public Button hiMomBtn = new JoystickButton(launchpad, 7);
+	
 	public OI() {
 		switchDirectionForwardBtn.whenPressed(new Drive());
 		switchDirectionReverseBtn.whenPressed(new DriveInverse());
@@ -81,5 +84,7 @@ public class OI {
 		
 		climberBtn.whenPressed(new Climb());
 		climberBtn.whenReleased(new StopClimb());
+		
+		hiMomBtn.toggleWhenPressed(new TurnOnHiMom());;
 	}
 }
