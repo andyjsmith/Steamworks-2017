@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5546.robot;
 
 import org.usfirst.frc.team5546.robot.commands.auto.DriveToBoilerAuto;
-import org.usfirst.frc.team5546.robot.commands.auto.GearAutoGroup;
+import org.usfirst.frc.team5546.robot.commands.auto.GearAutoButtonGroup;
 import org.usfirst.frc.team5546.robot.commands.cameras.DisableGearCamera;
 import org.usfirst.frc.team5546.robot.commands.cameras.EnableGearCamera;
 import org.usfirst.frc.team5546.robot.commands.climber.Climb;
@@ -11,12 +11,13 @@ import org.usfirst.frc.team5546.robot.commands.compressor.StopCompressor;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.Drive;
 import org.usfirst.frc.team5546.robot.commands.driveTrain.DriveInverse;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.CloseGearSlot;
+import org.usfirst.frc.team5546.robot.commands.gearGrabber.LiftGear;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PickUpGear;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PlaceGear;
 import org.usfirst.frc.team5546.robot.commands.gearGrabber.PrepareGearSlot;
-import org.usfirst.frc.team5546.robot.commands.hiMom.TurnOnHiMom;
 import org.usfirst.frc.team5546.robot.commands.intake.StartIntake;
 import org.usfirst.frc.team5546.robot.commands.intake.StopIntake;
+import org.usfirst.frc.team5546.robot.commands.lights.ToggleLights;
 import org.usfirst.frc.team5546.robot.commands.shooter.DisableShooter;
 import org.usfirst.frc.team5546.robot.commands.shooter.RunShooter;
 
@@ -48,6 +49,8 @@ public class OI {
 	public Button gearPickUpBtn = new JoystickButton(stickRight, 1);
 	public Button gearSlotBtn = new JoystickButton(stickLeft, 1);
 	
+	public Button placeGearWithoutRetractBtn = new JoystickButton(stickRight, 3);
+	
 	public Button boilerBtn = new JoystickButton(launchpad, 9);
 	public Button gearBtn = new JoystickButton(launchpad, 8);
 	
@@ -55,7 +58,9 @@ public class OI {
 	
 	public Button cancelGearBtn = new JoystickButton(launchpad, 5);
 	
-	public Button hiMomBtn = new JoystickButton(launchpad, 7);
+	public Button lightBtn = new JoystickButton(launchpad, 7);
+	
+	public Button gearViewButton = new JoystickButton(stickLeft, 4);
 	
 	public OI() {
 		switchDirectionForwardBtn.whenPressed(new Drive());
@@ -73,6 +78,9 @@ public class OI {
 		gearPickUpBtn.whenPressed(new EnableGearCamera());
 		gearPickUpBtn.whenReleased(new DisableGearCamera());
 		
+		placeGearWithoutRetractBtn.whenPressed(new PlaceGear());
+		placeGearWithoutRetractBtn.whenReleased(new LiftGear());
+		
 		gearSlotBtn.whenPressed(new PrepareGearSlot());
 		gearSlotBtn.whenReleased(new CloseGearSlot());
 		
@@ -80,11 +88,11 @@ public class OI {
 		intakeBtn.whenPressed(new StopIntake());
 		
 		boilerBtn.whenPressed(new DriveToBoilerAuto());
-		gearBtn.whenPressed(new GearAutoGroup());
+		gearBtn.whenPressed(new GearAutoButtonGroup());
 		
 		climberBtn.whenPressed(new Climb());
 		climberBtn.whenReleased(new StopClimb());
 		
-		hiMomBtn.toggleWhenPressed(new TurnOnHiMom());;
+		lightBtn.whenPressed(new ToggleLights());
 	}
 }
