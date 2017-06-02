@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5546.robot.commands.driveTrain;
 
 import org.usfirst.frc.team5546.robot.Robot;
-import org.usfirst.frc.team5546.robot.commands.vision.StartGearVision;
+import org.usfirst.frc.team5546.robot.commands.lights.EnableVisionLight;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
@@ -16,19 +16,22 @@ public class GearAuto extends Command {
 
 	final int IMAGE_WIDTH = 320;
 	//final int IMAGE_MIDPOINT = IMAGE_WIDTH / 2;
-	final int IMAGE_MIDPOINT = 150;
+	final int IMAGE_MIDPOINT = 144;
 	
 	boolean finished = false;
+	
+	double speed = 0.5;
 
-	public GearAuto() {
+	public GearAuto(double speed) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
 		visionTable = NetworkTable.getTable("vision/gear");
+		this.speed = speed;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		new StartGearVision(); // turn on light
+		new EnableVisionLight(); // turn on light
 		finished = false;
 	}
 
@@ -40,7 +43,7 @@ public class GearAuto extends Command {
 			
 			double rotation = (midpoint - IMAGE_MIDPOINT) / 1000 * -1;
 			
-			Robot.driveTrain.driveArcade(0.5, Math.cbrt(rotation));
+			Robot.driveTrain.driveArcade(speed, Math.cbrt(rotation)); // speed = 0.5
 			
 			double area = (visionTable.getNumberArray("width", new double[2])[0] + 
 					visionTable.getNumberArray("width", new double[2])[1]) * 
