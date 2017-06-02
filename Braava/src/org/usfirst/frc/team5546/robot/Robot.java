@@ -7,6 +7,7 @@ import org.usfirst.frc.team5546.robot.commands.auto.BoilerSideGearAutoRed;
 import org.usfirst.frc.team5546.robot.commands.auto.CenterGearAutoBlue;
 import org.usfirst.frc.team5546.robot.commands.auto.CenterGearAutoRed;
 import org.usfirst.frc.team5546.robot.commands.auto.DoNothingAuto;
+import org.usfirst.frc.team5546.robot.commands.auto.GearAutoGroup;
 import org.usfirst.frc.team5546.robot.commands.auto.LoadingStationSideGearAutoBlue;
 import org.usfirst.frc.team5546.robot.commands.auto.LoadingStationSideGearAutoRed;
 import org.usfirst.frc.team5546.robot.commands.compressor.StartCompressor;
@@ -14,12 +15,11 @@ import org.usfirst.frc.team5546.robot.commands.compressor.StopCompressor;
 import org.usfirst.frc.team5546.robot.subsystems.Climber;
 import org.usfirst.frc.team5546.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5546.robot.subsystems.GearGrabber;
-import org.usfirst.frc.team5546.robot.subsystems.HiMom;
 import org.usfirst.frc.team5546.robot.subsystems.Intake;
+import org.usfirst.frc.team5546.robot.subsystems.Lights;
 import org.usfirst.frc.team5546.robot.subsystems.PneumaticCompressor;
 import org.usfirst.frc.team5546.robot.subsystems.Shooter;
 import org.usfirst.frc.team5546.robot.subsystems.ShooterFeeder;
-import org.usfirst.frc.team5546.robot.subsystems.Vision;
 
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
@@ -46,14 +46,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	public static final DriveTrain driveTrain = new DriveTrain();
-	public static final Vision vision = new Vision();
+	public static final Lights lights = new Lights();
 	public static final Shooter shooter = new Shooter();
 	public static final Intake intake = new Intake();
 	public static final PneumaticCompressor compressor = new PneumaticCompressor();
 	public static final GearGrabber gearGrabber = new GearGrabber();
 	public static final ShooterFeeder feeder = new ShooterFeeder();
 	public static final Climber climber = new Climber();
-	public static final HiMom hiMom = new HiMom();
 	public static OI oi;
 
 	public static Preferences prefs;
@@ -121,7 +120,7 @@ public class Robot extends IterativeRobot {
 					drivingForward = false;
 				}
 
-				if (gearCamera) {
+				if (gearCamera || oi.gearViewButton.get()) {
 					cvSinkReverse.setEnabled(false);
 					cvSinkForward.setEnabled(false);
 					cvSinkGear.setEnabled(true);
@@ -165,9 +164,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Pressure",
 				Math.floor((pressureSensor.getAverageVoltage() - 0.485) / 2.2518 * 120));
 		SmartDashboard.putString("View", cameraDirection);
-		SmartDashboard.putData("pdp", pdp);
-		SmartDashboard.putData("talon", Robot.shooter.talon);
-		SmartDashboard.putNumber("talon velocity", shooter.talon.getEncVelocity());
+//		SmartDashboard.putData("pdp", pdp);
+//		SmartDashboard.putData("talon", Robot.shooter.talon);
+//		SmartDashboard.putNumber("talon velocity", shooter.talon.getEncVelocity());
 	}
 
 	/**
@@ -238,9 +237,10 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Pressure",
 				Math.floor((pressureSensor.getAverageVoltage() - 0.485) / 2.2518 * 120));
 		SmartDashboard.putString("View", cameraDirection);
-		SmartDashboard.putData("pdp", pdp);
-		SmartDashboard.putData("talon", Robot.shooter.talon);
-		SmartDashboard.putNumber("talon velocity", shooter.talon.getEncVelocity());
+//		SmartDashboard.putData("pdp", pdp);
+//		SmartDashboard.putData("talon", Robot.shooter.talon);
+//		SmartDashboard.putNumber("talon velocity", shooter.talon.getEncVelocity());
+		SmartDashboard.putData(new GearAutoGroup());
 	}
 
 	/**
